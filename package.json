@@ -3,7 +3,7 @@
   "productName": "autoclicker",
   "version": "1.0.0",
   "description": "Automatic clicker",
-  "main": ".webpack/main",
+  "main": ".webpack/main/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development ELECTRON_DISABLE_SECURITY_WARNINGS=true electron-forge start",
     "package": "electron-forge package",
@@ -21,7 +21,14 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "asar": {
+          "unpack": [
+            "**/.webpack/main/*.worker.js",
+            "**/.webpack/main/**/*robotjs*"
+          ]
+        }
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
@@ -45,6 +52,7 @@
         }
       ],
       "plugins": [
+        ["@electron-forge/plugin-auto-unpack-natives"],
         [
           "@electron-forge/plugin-webpack",
           {
@@ -73,6 +81,10 @@
     "files": [
       ".webpack/**/*"
     ],
+    "asarUnpack": [
+      "**/.webpack/main/*.worker.js",
+      "**/.webpack/main/**/robotjs*"
+    ],
     "linux": {
       "target": "AppImage",
       "category": "Utility"
@@ -86,6 +98,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.61",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
     "@electron-forge/maker-zip": "^6.0.0-beta.61",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.0.0-beta.61",
     "@electron-forge/plugin-webpack": "6.0.0-beta.61",
     "@vercel/webpack-asset-relocator-loader": "1.7.0",
     "babel-loader": "^8.2.2",
