@@ -11,7 +11,7 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-forge package && electron-builder"
   },
   "keywords": [],
   "author": {
@@ -52,7 +52,9 @@
         }
       ],
       "plugins": [
-        ["@electron-forge/plugin-auto-unpack-natives"],
+        [
+          "@electron-forge/plugin-auto-unpack-natives"
+        ],
         [
           "@electron-forge/plugin-webpack",
           {

@@ -3,4 +3,39 @@ body {
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+
+  --white: hsl(0,0%,100%);
+  --black-075: hsl(210,8%,90%);
+  --black-300: hsl(210,8%,65%);
+}
+
+kbd {
+  display: inline-block;
+  margin: 0 .1em;
+  padding: .1em .6em;
+  color: var(--black-800);
+  text-shadow: 0 1px 0 var(--white);
+  background-color: var(--black-075);
+  border: 1px solid var(--black-300);
+  border-radius: 3px;
+  box-shadow: 0 1px 1px hsl(210deg 8% 5% / 15%), inset 0 1px 0 0 hsl(0deg 0% 100%);
+  overflow-wrap: break-word;
+}
+
+/*kbd {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#EEEEEE none repeat scroll 0 0;
+  border-color:#CCCCCC #AAAAAA #888888 #BBBBBB;
+  border-style:solid;
+  border-width:1px 1px 2px 2px;
+  color:#000000;
+  padding:2px 1px;
+  white-space:nowrap;
+}*/
+
+p {
+  padding: 0;
+  margin: 0;
 }

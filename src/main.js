@@ -7,7 +7,7 @@ const isDev = process.env.NODE_ENV === "development";
 
 const state = {
   working: false,
-  cps: 1000,
+  cps: 50,
 }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -18,8 +18,8 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 600,
+    height: 300,
     webPreferences: {
       contextIsolation: true,
       worldSafeExecuteJavaScript: true,
@@ -34,6 +34,13 @@ const createWindow = () => {
   // Open the DevTools.
   if(isDev) {
     mainWindow.webContents.openDevTools()
+
+    mainWindow.webContents.on("before-input-event", (event, input) => {
+      console.log(input);
+    });
+  }
+  if(!isDev) {
+    mainWindow.setMenu(null)
   }
 
   globalShortcut.register('CommandOrControl+Alt+A', async () => {
@@ -42,7 +49,7 @@ const createWindow = () => {
       state.working = true
       mainWindow.webContents.send('running', true)
       i = await spawn(new Worker(workerURL))
-      i(state.cps)
+      i.runClicks(state.cps)
     }
     if (globalShortcut.isRegistered('CommandOrControl+Alt+A')) {
       globalShortcut.register('Q', async () => {
