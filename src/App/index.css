@@ -1,12 +1,15 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+  /*max-width: 38rem;
+  padding: 2rem;*/
 
   --white: hsl(0,0%,100%);
   --black-075: hsl(210,8%,90%);
   --black-300: hsl(210,8%,65%);
+}
+html, body, #root {
+  height: 100%;
 }
 
 kbd {

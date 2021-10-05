@@ -19,13 +19,15 @@ const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 600,
-    height: 300,
+    height: 280,
     webPreferences: {
       contextIsolation: true,
       worldSafeExecuteJavaScript: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegrationInWorker: true
     },
+    alwaysOnTop: true,
+    resizable: false,
   });
 
   // and load the index.html of the app.
@@ -39,9 +41,7 @@ const createWindow = () => {
       console.log(input);
     });
   }
-  if(!isDev) {
-    mainWindow.setMenu(null)
-  }
+  mainWindow.setMenu(null)
 
   globalShortcut.register('CommandOrControl+Alt+A', async () => {
     let i
