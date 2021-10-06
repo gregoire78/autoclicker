@@ -9,7 +9,7 @@ function Autocliker() {
     }, [])
     const handleCahnge = (e) => {
         setCps(e.target.value)
-        window.api.send("cps", e.target.value)
+        window.api.setCps(e.target.value)
     }
     return (
         <div style={{backgroundColor: isRunning ? 'orange' : 'white', padding: '10px', height: 'calc(100% - 20px)'}}>
